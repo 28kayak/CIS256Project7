@@ -18,7 +18,22 @@ public class ChainedTable<K, E>
 	}
 	public boolean containsKey(K key)
 	{
-		//have to code
+		int index = hash(key);
+		boolean containing = false;
+		ChainedHashNode <K,E> cursor;
+		ChainedHashNode<K,E> head;
+		head = (ChainedHashNode<K, E>) table[index];
+		
+		for(cursor = head; cursor != null; cursor = cursor.link)
+		{
+			if(cursor.elements == key)
+			{//can I compare the way? 
+				containing = true;
+			}
+		}
+		
+		
+		return containing;
 	}
 	public E get(K key)
 	{
