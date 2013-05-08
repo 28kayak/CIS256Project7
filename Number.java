@@ -13,7 +13,10 @@ public class Number
 		boolean equality = false;
 		if(obj.getClass().equals(this.getClass()))
 		{
-			equality = true;
+			if(this.number == ((Number)obj).number)
+			{
+				equality = true;
+			}
 		}
 		else
 		{
