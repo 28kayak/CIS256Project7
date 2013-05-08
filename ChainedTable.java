@@ -7,6 +7,15 @@ public class ChainedTable<K, E>
 	//of all the elements for which hash(key) is i
 	private Object [] table;
 	private int manyItems = 0;
+	
+	public ChainedTable(int tableSize)
+	{
+		if(tableSize <= 0 )
+		{
+			throw new IllegalArgumentException("Table size must be positive");
+		}
+		table = new Object[tableSize];
+	}
 
 	public boolean containsKey(K key)
 	{

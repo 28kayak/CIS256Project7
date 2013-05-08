@@ -35,7 +35,25 @@ public class Number
 	}
 	
 	public int hashCode1(Object obj)
-	{
-		return 
+	{	
+		int  last4digits;
+		if(((Number)obj).number >= 4160000)
+		{
+			last4digits = ((Number)obj).number - 4160000;
+			last4digits = last4digits % 71;
+			
+			
+		}
+		else if(((Number)obj).number >= 5740000)
+		{
+			last4digits = ((Number)obj).number - 5740000;
+			last4digits = last4digits % 71;
+		}
+		else
+		{
+			System.out.println("Invalid area code");
+			last4digits = -1;
+		}
+		return last4digits;	
 	}
 }
