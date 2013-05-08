@@ -8,14 +8,6 @@ public class ChainedTable<K, E>
 	private Object [] table;
 	private int manyItems = 0;
 
-	public ChainedTable(int tableSize)
-	{
-		if(tableSize <= 0)
-		{
-			throw new IllegalArgumentException("Table size mush be positive");
-		}
-		table = new Object[tableSize];
-	}
 	public boolean containsKey(K key)
 	{
 		int index = hash(key);
@@ -23,10 +15,11 @@ public class ChainedTable<K, E>
 		ChainedHashNode <K,E> cursor;
 		ChainedHashNode<K,E> head;
 		head = (ChainedHashNode<K, E>) table[index];
-		
+		System.out.println("about to look for whether the given key contains");
 		for(cursor = head; cursor != null; cursor = cursor.link)
 		{
-			if(cursor.elements == key)
+			System.out.println("---searching---");
+			if(cursor.key.equals(key))
 			{//can I compare the way? 
 				containing = true;
 			}

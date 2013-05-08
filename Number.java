@@ -33,8 +33,9 @@ public class Number
 		return hashedIndex;
 		*/
 	}
-	/*
-	@Override
-	public int hashCode(Object obj)
-	*/
+	
+	public int hashCode1(Object obj)
+	{
+		return 
+	}
 }

@@ -11,6 +11,14 @@ public class Costomer
 		setAddress(add);
 		setNumber(phone);
 	}
+	public ChainedTable(int tableSize)
+	{
+		if(tableSize <= 0)
+		{
+			throw new IllegalArgumentException("Table size mush be positive");
+		}
+		table = new Object[tableSize];
+	}
 	public String getName()
 	{
 		return name;
