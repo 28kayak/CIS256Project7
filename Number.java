@@ -22,10 +22,16 @@ public class Number
 		return equality;
 		
 	}
-	@Override
 	public int hashCode(Object obj)
 	{
+		return ((Number)obj).number % 71;
+		/*
 		int hashedIndex;
 		return hashedIndex;
+		*/
 	}
+	/*
+	@Override
+	public int hashCode(Object obj)
+	*/
 }

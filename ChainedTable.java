@@ -37,16 +37,28 @@ public class ChainedTable<K, E>
 	}
 	public E get(K key)
 	{
+		ChainedHashNode<K,E> cursor =null;
 		int index = hash(key);
-		if(index == -1)
+
+		if (table[index]!=null)
 		{
+			cursor = (ChainedHashNode<K,E>) table[index];
+			while(cursor!=null)
+			{
+				if ( cursor.key.equals(key) )
+				{
+					return cursor.elements;
+				}else
+				{
+					cursor=cursor.link;
+				}
+			}
+			return null;   // same index, but no same key
+		}else
+		{
+			// no index
 			return null;
 		}
-		else
-		{
-			return (E) table[index];
-		}
-		
 	}	
 	
 	private int hash(K key)
@@ -72,20 +84,18 @@ public class ChainedTable<K, E>
 		//cursor = (ChainedHashNode<K, E>) table[index];
 		if(table[index] != null)
 		{
-			while(table[index] == null)
+			cursor = (ChainedHashNode<K,E>) table[index];
+			while(cursor != null)
 			{
-				cursor = (ChainedHashNode<K,E> table[index]).cursor.link;
+				cursor = cursor.link;
+				//cursor = (ChainedHashNode<K,E> table[index]).cursor.link;
 			}
 		}
 		else
 		{
 			cursor = null;
 		}
-			
 		
-		
-			
-		 
 		if(cursor == null)
 		{//add a new node at the front of the list of table[hash(key)]
 			int i = hash(key);
@@ -106,16 +116,53 @@ public class ChainedTable<K, E>
 	}
 	public E remove(K key)
 	{
-		return null;
-	}
+		ChainedHashNode<K,E> cursor =null;
+		ChainedHashNode<K,E> prev_cursor=null;
+		
+		int index = hash(key);
+		if (table[index]!=null)
+		{
+			prev_cursor = null;
+			cursor = (ChainedHashNode<K,E>) table[index];
+			while(cursor!=null)
+			{
+				if ( cursor.key.equals(key) )
+				{
+					if (prev_cursor != null)
+					{
+						prev_cursor.link = cursor.link;
+						
+					}else
+					{
+						table[index]=null;   //this node is first one
+					}
+					manyItems--;
+					return cursor.elements;
+				}else
+				{
+					prev_cursor = cursor;
+					cursor=cursor.link;
+				}
+			}
+			manyItems--;
+			return null;   // same index, but no same key
+		}else
+		{
+			// no index
+			manyItems--;
+			return null;
+		}
+	}//remove
 	public double estimateEfficiency()
 	{
 		double estimate;
 		estimate = 1 + (manyItems/table.length) * (1/2);
 		return estimate;
 	}
+	/*
 	public double actualEfficiency()
 	{
 		
 	}
+	*/
 }//class
