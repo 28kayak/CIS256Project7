@@ -8,6 +8,16 @@ public class ChiandTableTest
 		ChainedTable<Integer, String> chaindTable = new ChainedTable<Integer,String>(10);
 		chaindTable.put(Integer.valueOf(131), "Kaya Ota");
 		chaindTable.put(Integer.valueOf(125), "5^3");
+		chaindTable.put(Integer.valueOf(100), "Keisuke");
+		chaindTable.put(Integer.valueOf(495), "Kori Ota");
+		chaindTable.put(Integer.valueOf(888), "Paul");
+		chaindTable.put(Integer.valueOf(9056), "google");
+		chaindTable.put(Integer.valueOf(94929496), "yahooo");
+
+
+
+
+
 		
 		
 		System.out.printf("Key = %d  " + chaindTable.get(Integer.valueOf(131)) + "\n", Integer.valueOf(131));
@@ -22,7 +32,7 @@ public class ChiandTableTest
 		{
 			System.out.println("No, there is no such a key muched");
 		}
-		
+		/*
 		chaindTable.remove(Integer.valueOf(131));
 		System.out.println("after removing");
 		if(chaindTable.containsKey(131))
@@ -33,6 +43,8 @@ public class ChiandTableTest
 		{
 			System.out.println("No, there is no such a key muched, Sorry try again");
 		}
+		*/
+		chaindTable.printTable();
 		
-	}
-}
+	}//main
+}//class

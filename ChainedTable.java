@@ -7,6 +7,8 @@ public class ChainedTable<K, E>
 	//of all the elements for which hash(key) is i
 	private Object [] table;
 	private int manyItems = 0;
+	private int manyComp = 0;
+	private int manySearch = 0;
 	
 	public ChainedTable(int tableSize)
 	{
@@ -55,6 +57,7 @@ public class ChainedTable<K, E>
 					cursor=cursor.link;
 				}
 			}
+			manyComp++;
 			return null;   // same index, but no same key
 		}else
 		{
@@ -161,10 +164,37 @@ public class ChainedTable<K, E>
 		estimate = 1 + (manyItems/table.length) * (1/2);
 		return estimate;
 	}
-	/*
+	
 	public double actualEfficiency()
 	{
+		double actual;
+		actual = manyComp / manySearch;
+		return actual;
+	}
+	
+	@SuppressWarnings ("unchecked")
+	public void printTable()
+	{
+		ChainedHashNode <K,E> cursor = null;
+		for(int i = 0; i < manyItems; i++)
+		{
+			System.out.printf("\n %d:",i);
+			if(table[i] != null)
+			{
+				cursor = (ChainedHashNode<K,E>) table[i];
+				while(cursor != null)
+				{
+					System.out.printf("{key: %s \nElement: %s}\n", cursor.key.toString(), cursor.elements.toString());
+					cursor = cursor.link;
+				}
+			}
+			else
+			{
+				System.out.print("No entry");
+			}
+			//System.out.println("\n\nend");
+		}
 		
 	}
-	*/
+	
 }//class
