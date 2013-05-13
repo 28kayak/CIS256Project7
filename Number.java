@@ -7,6 +7,10 @@ public class Number
 	{
 		number = num;
 	}
+	public int getNumber()
+	{
+		return number;
+	}
 	@Override
 	public boolean equals(Object obj)
 	{
@@ -55,5 +59,11 @@ public class Number
 			last4digits = -1;
 		}
 		return last4digits;	
+	}
+	public String toString()
+	{
+		String stringNum =  String.valueOf(getNumber());
+		return stringNum;
+		
 	}
 }

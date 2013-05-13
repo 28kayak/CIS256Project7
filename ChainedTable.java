@@ -41,14 +41,17 @@ public class ChainedTable<K, E>
 	}
 	public E get(K key)
 	{
+		manySearch++;
 		ChainedHashNode<K,E> cursor =null;
 		int index = hash(key);
 
 		if (table[index]!=null)
 		{
+			manyComp++;
 			cursor = (ChainedHashNode<K,E>) table[index];
 			while(cursor!=null)
 			{
+				manyComp++;
 				if ( cursor.key.equals(key) )
 				{
 					return cursor.elements;
@@ -57,7 +60,7 @@ public class ChainedTable<K, E>
 					cursor=cursor.link;
 				}
 			}
-			manyComp++;
+			
 			return null;   // same index, but no same key
 		}else
 		{
@@ -161,14 +164,14 @@ public class ChainedTable<K, E>
 	public double estimateEfficiency()
 	{
 		double estimate;
-		estimate = 1 + (manyItems/table.length) * (1/2);
+		estimate = 1 + (manyItems*0.5/table.length);
 		return estimate;
 	}
 	
 	public double actualEfficiency()
 	{
 		double actual;
-		actual = manyComp / manySearch;
+		actual = (manyComp * 1.0) / manySearch;
 		return actual;
 	}
 	
@@ -176,7 +179,7 @@ public class ChainedTable<K, E>
 	public void printTable()
 	{
 		ChainedHashNode <K,E> cursor = null;
-		for(int i = 0; i < manyItems; i++)
+		for(int i = 0; i < table.length; i++)
 		{
 			System.out.printf("\n %d:",i);
 			if(table[i] != null)
