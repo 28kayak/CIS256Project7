@@ -18,7 +18,7 @@ public class ChainedTable<K, E>
 		}
 		table = new Object[tableSize];
 	}
-
+	@SuppressWarnings ("unchecked")
 	public boolean containsKey(K key)
 	{
 		int index = hash(key);
@@ -39,6 +39,7 @@ public class ChainedTable<K, E>
 		
 		return containing;
 	}
+	@SuppressWarnings ("unchecked")
 	public E get(K key)
 	{
 		manySearch++;
@@ -114,14 +115,17 @@ public class ChainedTable<K, E>
 			table[i] = cursor;
  
 		}
+		/*
 		else
 		{
 			answer = cursor.elements;
 			cursor.elements = elements;
 		}
+		*/
 		manyItems++;
 		return answer;
 	}
+	@SuppressWarnings ("unchecked")
 	public E remove(K key)
 	{
 		ChainedHashNode<K,E> cursor =null;
